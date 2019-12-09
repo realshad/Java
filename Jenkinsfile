@@ -39,10 +39,10 @@ pipeline{
             }
         
 
-            steps{
-                sh 'chmod +x ./jenkins/push/push.sh '
-                sh "./jenkins/push/push.sh"
-            }
+            // steps{
+            //     sh 'chmod +x ./jenkins/push/push.sh '
+            //     sh "./jenkins/push/push.sh"
+            // }
         }
         
         stage("Deploy"){
