@@ -37,7 +37,6 @@ pipeline{
             steps {
                     sh "echo This is executing because of release branch"
             }
-        }
 
             steps{
                 sh 'chmod +x ./jenkins/push/push.sh '
