@@ -26,14 +26,14 @@ pipeline{
             
         }
         stage("Pushing"){
-                        when {
-                beforeAgent true
-                anyOf {
+                        when 
+                
+                {
                     // environment name: 'BRANCH', value: 'master'
                     environment name: 'BRANCH', value: 'release'
                     
                 }
-            }
+            
             steps {
                     sh "echo This is executing because of release branch"
             }
