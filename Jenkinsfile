@@ -29,7 +29,7 @@ pipeline{
                 when {
                 beforeAgent true
                 anyOf {
-                    environment name: 'BRANCH', value: 'master'
+                    // environment name: 'BRANCH', value: 'master'
                     environment name: 'BRANCH', value: 'release'
                 }
             }
@@ -38,10 +38,10 @@ pipeline{
             }
         }
 
-            steps{
-                sh 'chmod +x ./jenkins/push/push.sh '
-                sh "./jenkins/push/push.sh"
-            }
+            // steps{
+            //     sh 'chmod +x ./jenkins/push/push.sh '
+            //     sh "./jenkins/push/push.sh"
+            // }
             
         }
         stage("Deploy"){
