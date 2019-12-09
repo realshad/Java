@@ -9,15 +9,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh '''
-                   echo "Building"
-
-                '''
+                sh ' echo "Building" '
             }
 
             post {
                 success {
-                   echo "Sonar"
+                  sh ' echo "Sonar" '
                 }
             }
         }
