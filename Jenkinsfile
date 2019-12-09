@@ -2,8 +2,7 @@ pipeline {
 
     agent any
     
-    environment {
-        PASS = credentials('registry-pass') 
+    
     }
 
     stages {
@@ -11,40 +10,39 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    ./jenkins/build/mvn.sh mvn -B -DskipTests clean package
-                    ./jenkins/build/build.sh
+                   echo "Building"
 
                 '''
             }
 
             post {
                 success {
-                   archiveArtifacts artifacts: 'java-app/target/*.jar', fingerprint: true
+                   echo "Sonar"
                 }
             }
         }
 
         stage('Test') {
             steps {
-                sh './jenkins/test/mvn.sh mvn test'
+                sh 'echo "testing"'
             }
 
             post {
                 always {
-                    junit 'java-app/target/surefire-reports/*.xml'
+                    sh 'echo "junit"'
                 }
             }
         }
 
         stage('Push') {
             steps {
-                sh './jenkins/push/push.sh'
+                sh 'echo "pushing"'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh './jenkins/deploy/deploy.sh'
+                sh 'echo "deploying"'
             }
         }
     }
