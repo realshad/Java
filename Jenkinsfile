@@ -36,13 +36,12 @@ pipeline{
             steps {
                     sh "echo $BRANCH"
             }
-        }
+        
 
             // steps{
             //     sh 'chmod +x ./jenkins/push/push.sh '
             //     sh "./jenkins/push/push.sh"
             // }
-            
         }
         stage("Deploy"){
             steps{
