@@ -20,7 +20,7 @@ pipeline{
             }
             post {
                 success{
-                    // sh "echo $BRANCH"
+                    sh "echo $BRANCH"
                 }
             }
             
@@ -30,7 +30,6 @@ pipeline{
             steps{
                 sh "echo This is executed because of commit in release branch"
             }                
-            
         }
         stage("Deploy"){
             steps{
