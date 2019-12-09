@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        PASS= credentials('registry-pass')
+    }
     stages{
         stage("Build"){
             steps{
@@ -10,6 +13,11 @@ pipeline{
         stage("Test"){
             steps{
                 sh "echo Testing"
+            }
+            post {
+                success{
+                    sh "echo $PASS"
+                }
             }
             
         }
