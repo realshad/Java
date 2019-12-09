@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment{
         PASS= credentials("registry-pass")
-        BRANCH= sh "echo $GIT_BRANCH |cut -d/ -f2"
+        BRANCH= sh (script: "echo $GIT_BRANCH |cut -d/ -f2")
     }
         
        stages{
@@ -26,7 +26,7 @@ pipeline{
             
         }
         stage("Pushing"){
-            when {branch 'release'}
+            when {environment name: 'BRANCH', value: 'release'}
             steps{
                 sh "echo This is executed because of commit in release branch"
             }                
