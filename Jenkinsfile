@@ -26,6 +26,18 @@ pipeline{
             
         }
         stage("Pushing"){
+                when {
+                beforeAgent true
+                anyOf {
+                    environment name: 'BRANCH', value: 'master'
+                    environment name: 'BRANCH', value: 'release'
+                }
+            }
+            steps {
+                    sh "echo $BRANCH"
+            }
+        }
+
             steps{
                 sh 'chmod +x ./jenkins/push/push.sh '
                 sh "./jenkins/push/push.sh"
