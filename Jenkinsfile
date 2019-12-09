@@ -6,13 +6,13 @@ pipeline{
     stages{
         stage("Build"){
             steps{
-                sh "echo Building"
+                sh "./jenkins/build/build.sh"
             }
             
         }
         stage("Test"){
             steps{
-                sh "echo Testing"
+                sh "./jenkins/test/mvn.sh"
             }
             post {
                 success{
@@ -23,9 +23,14 @@ pipeline{
         }
         stage("Pushing"){
             steps{
-                sh "echo Pushing"
+                sh "./jenkins/push/push.sh"
             }
             
+        }
+        stage("Deploy"){
+            steps{
+                sh "./jenkins/deploy/deploy.sh"
+            }
         }
     }
 }
