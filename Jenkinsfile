@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment{
         PASS= credentials("registry-pass")
-        BRANCH= sh (script: "echo  $GIT_BRANCH")
+        BRANCH= sh (script: "echo  $GIT_BRANCH",returnStdout: true)
     }
         
        stages{
