@@ -1,7 +1,9 @@
 pipeline{
     agent any
-    
-       def PASS= "registry-pass"
+    environment{
+        PASS= credentials("registry-pass")
+    }
+        
        stages{
         stage("Build"){
             steps{
