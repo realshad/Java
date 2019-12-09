@@ -29,7 +29,7 @@ pipeline{
                         when {
                 beforeAgent true
                 anyOf {
-                    environment name: 'BRANCH', value: 'master'
+                    // environment name: 'BRANCH', value: 'master'
                     environment name: 'BRANCH', value: 'release'
                     
                 }
