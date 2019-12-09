@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment{
         PASS= credentials("registry-pass")
-        BRANCH= sh (script: "echo  $GIT_BRANCH |cut -d/ -f2",returnStdout: true)
+        
     }
         
        stages{
@@ -20,28 +20,17 @@ pipeline{
             }
             post {
                 success{
-                    sh "echo $BRANCH"
+                    // sh "echo $BRANCH"
                 }
             }
             
         }
         stage("Pushing"){
-                when {
-                beforeAgent true
-                anyOf {
-                    // environment name: 'BRANCH', value: 'master'
-                    environment name: 'BRANCH', value: 'release'
-                }
-            }
-            steps {
-                    sh "echo $BRANCH"
-            }
-        
-
-            // steps{
-            //     sh 'chmod +x ./jenkins/push/push.sh '
-            //     sh "./jenkins/push/push.sh"
-            // }
+            when {branch 'release'}
+            steps{
+                sh "echo This is executed because of commit in release branch"
+            }                
+            
         }
         stage("Deploy"){
             steps{
