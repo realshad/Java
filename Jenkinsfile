@@ -1,9 +1,8 @@
 pipeline{
     agent any
-    environment{
-        PASS= credentials('registry-pass')
-    }
-    stages{
+    
+       def PASS= credentials('registry-pass')
+       stages{
         stage("Build"){
             steps{
                 sh 'chmod +x ./jenkins/build/build.sh '
